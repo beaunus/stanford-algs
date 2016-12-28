@@ -14,3 +14,5 @@ Similar to the course assignment, the files have the following format:
 
 \[value\_2\] \[weight\_2\]
 
+...
+
