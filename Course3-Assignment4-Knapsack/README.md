@@ -2,7 +2,7 @@
 
 ## Course 3 - Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming
 
-## Assignnment 4 - Knapsack
+## Assignment 4 - Knapsack
 
 Similar to the course assignment, the files have the following format:
 
