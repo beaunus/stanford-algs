@@ -2,7 +2,9 @@
 
 ## Course 3 - Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming
 
-### Assignment 4 - Knapsack
+### Assignment 4 - Knapsack - Input File Generator - Java
+
+This is a Java implementation of a test case generator for this assignment.
 
 `InputFileGenerator.java` relies on the following API:
 
