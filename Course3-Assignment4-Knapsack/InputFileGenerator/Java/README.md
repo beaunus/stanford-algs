@@ -6,7 +6,7 @@
 
 This is a Java implementation of a test case generator for this assignment.
 
-`InputFileGenerator.java` relies on the following API:
+`StanfordAlgsCourse3Assignment4InputFileGenerator.java` relies on the following API:
 
 ```java
 public class KnapsackProblem {
