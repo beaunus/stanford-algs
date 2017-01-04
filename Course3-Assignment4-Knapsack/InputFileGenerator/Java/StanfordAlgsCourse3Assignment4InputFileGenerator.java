@@ -1,9 +1,12 @@
+package beaunus.stanford.algs.course3.assignment4;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -30,9 +33,10 @@ public class StanfordAlgsCourse3Assignment4InputFileGenerator {
    *          knapsack size, number of items, ...
    */
   public static void main(String[] args) {
-    if (args.length < 3) {
-      System.out.println("usage: InputFileGenerator "
-          + "{[knapsack size], [number of items]}");
+    if (args.length < 2) {
+      System.out.println("usage: "
+          + StanfordAlgsCourse3Assignment4InputFileGenerator.class.getName()
+          + " " + "{[knapsack size], [number of items]}");
       System.out.println();
       System.out.println("4 unique files will be created for each of the "
           + "([knapsack size], [number of items]) pairs.");
@@ -42,9 +46,15 @@ public class StanfordAlgsCourse3Assignment4InputFileGenerator {
     int argPointer = 0;
     while (argPointer < args.length) {
 
+      // Initialize the list of file lines
+      LinkedList<String> lines = new LinkedList<String>();
+
       // Read arguments into variables.
       int size = Integer.parseInt(args[argPointer++]);
       int numberOfItems = Integer.parseInt(args[argPointer++]);
+
+      // Add the first line to lines.
+      lines.add(size + " " + numberOfItems);
 
       // A set of solutions.
       // Used to ensure 4 unique test case files are generated.
@@ -61,6 +71,7 @@ public class StanfordAlgsCourse3Assignment4InputFileGenerator {
         for (int i = 0; i < numberOfItems; i++) {
           values[i] = ThreadLocalRandom.current().nextInt(maxValue) + 1;
           weights[i] = ThreadLocalRandom.current().nextInt(maxWeight) + 1;
+          lines.add(values[i] + " " + weights[i]);
         }
 
         // construct a KnapsackProblem to be used as an example
@@ -83,7 +94,7 @@ public class StanfordAlgsCourse3Assignment4InputFileGenerator {
           // Write the file.
           Path file = Paths.get(filename);
           try {
-            Files.write(file, kp.toFileStringList(), Charset.forName("UTF-8"));
+            Files.write(file, lines, Charset.forName("UTF-8"));
           } catch (IOException exception) {
             exception.printStackTrace();
           }
