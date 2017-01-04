@@ -27,18 +27,6 @@ public class KnapsackProblem {
   }
 
   /**
-   * Returns an Iterable of this KnapsackProblem, to be used in
-   * generating example files.
-   *
-   * Each string should be a single line from the test case file, including the
-   * first line.
-   *
-   * @return the Iterable object of Strings
-   */
-  public Iterable<String> toFileStringList() {
-  }
-
-  /**
    * The value of the solution.
    *
    * @return the value of the solution.
