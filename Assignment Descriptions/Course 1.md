@@ -1,4 +1,3 @@
-<nobr>
 # Couse 1. Divide and Conquer, Sorting and Searching, and Randomized Algorithms
 
 ## Programming Assignment #1
@@ -23,7 +22,7 @@ The file contains all of the integers between 1 and 10,000 (inclusive, with no r
 
 Your task is to compute the total number of comparisons used to sort the given input file by QuickSort. As you know, the number of comparisons depends on which elements are chosen as pivots, so we'll ask you to explore three different pivoting rules.
 
-You should not count comparisons one-by-one. Rather, when there is a recursive call on a subarray of length _m_, you should simply add _m−1_ to your running total of comparisons. (This is because the pivot element is compared to each of the other _m−1_ elements in the subarray in this recursive call.)
+You should not count comparisons one-by-one. Rather, when there is a recursive call on a subarray of length _m_, you should simply add _m−1_ to your running total of comparisons. (This is because the pivot element is compared to each of the other <nobr>_m−1_</nobr> elements in the subarray in this recursive call.)
 
 WARNING: The Partition subroutine can be implemented in several different ways, and different implementations can give you differing numbers of comparisons. For this problem, you should implement the Partition subroutine _exactly_ as it is described in the video lectures (otherwise you might get the wrong answer).
 
@@ -43,5 +42,4 @@ WARNING: The Partition subroutine can be implemented in several different ways, 
 
 1. The file contains the adjacency list representation of a simple undirected graph. There are 200 vertices labeled 1 to 200. The first column in the file represents the vertex label, and the particular row (other entries except the first column) tells all the vertices that the vertex is adjacent to. So for example, the _6<sup>th</sup>_ row looks like : "6	155	56	52	120	......". This just means that the vertex with label 6 is adjacent to (i.e., shares an edge with) the vertices with labels 155,56,52,120,......,etc
 
- Your task is to code up and run the randomized contraction algorithm for the min cut problem and use it on the above graph to compute the min cut. (HINT: Note that you'll have to figure out an implementation of edge contractions. Initially, you might want to do this naively, creating a new graph from the old every time there's an edge contraction. But you should also think about more efficient implementations.) (WARNING: As per the video lectures, please make sure to run the algorithm many times with different random seeds, and remember the smallest cut that you ever find.) 
-</nobr>
+ Your task is to code up and run the randomized contraction algorithm for the min cut problem and use it on the above graph to compute the min cut. (HINT: Note that you'll have to figure out an implementation of edge contractions. Initially, you might want to do this naively, creating a new graph from the old every time there's an edge contraction. But you should also think about more efficient implementations.) (WARNING: As per the video lectures, please make sure to run the algorithm many times with different random seeds, and remember the smallest cut that you ever find.)
