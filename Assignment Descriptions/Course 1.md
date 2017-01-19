@@ -6,7 +6,7 @@
 
  To get the most out of this assignment, your program should restrict itself to multiplying only pairs of single-digit numbers. You can implement the grade-school algorithm if you want, but to get the most out of the assignment you'll want to implement recursive integer multiplication and/or Karatsuba's algorithm.
 
-So: what's the product of the following two 64-digit numbers?
+ So: what's the product of the following two 64-digit numbers?
 
 ## Programming Assignment #2
 
