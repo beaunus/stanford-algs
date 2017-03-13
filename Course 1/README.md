@@ -1,4 +1,4 @@
-# Couse 1. Divide and Conquer, Sorting and Searching, and Randomized Algorithms
+# Course 1. Divide and Conquer, Sorting and Searching, and Randomized Algorithms
 
 ## Programming Assignment #1
 
@@ -7,14 +7,6 @@
  To get the most out of this assignment, your program should restrict itself to multiplying only pairs of single-digit numbers. You can implement the grade-school algorithm if you want, but to get the most out of the assignment you'll want to implement recursive integer multiplication and/or Karatsuba's algorithm.
 
  So: what's the product of the following two 64-digit numbers?
-
-## Programming Assignment #2
-
-1. This file contains all of the 100,000 integers between 1 and 100,000 (inclusive) in some order, with no integer repeated.
-
- Your task is to compute the number of inversions in the file given, where the _i<sup>th</sup>_ row of the file indicates the _i<sup>th</sup>_ entry of an array.
-
- Because of the large size of this array, you should implement the fast divide-and-conquer algorithm covered in the video lectures.
 
 ## Programming Assignment #3
 
