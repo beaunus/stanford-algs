@@ -30,7 +30,7 @@ WARNING: The Partition subroutine can be implemented in several different ways, 
 
  SUBTLE POINT: A careful analysis would keep track of the comparisons made in identifying the median of the three candidate elements. You should NOT do this. That is, as in the previous two problems, you should simply add _m−1_ to your running total of comparisons every time you recurse on a subarray with length _m_.
 
-## Programming assignment 4
+## Programming assignment #4
 
 1. The file contains the adjacency list representation of a simple undirected graph. There are 200 vertices labeled 1 to 200. The first column in the file represents the vertex label, and the particular row (other entries except the first column) tells all the vertices that the vertex is adjacent to. So for example, the _6<sup>th</sup>_ row looks like : "6	155	56	52	120	......". This just means that the vertex with label 6 is adjacent to (i.e., shares an edge with) the vertices with labels 155,56,52,120,......,etc
 
