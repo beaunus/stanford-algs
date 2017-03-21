@@ -31,7 +31,7 @@
  OPTIONAL EXERCISE: Compare the performance achieved by heap-based and search-tree-based implementations of the algorithm.
 
 
-## Programming assignment 4
+## Programming assignment #4
 
 1. The goal of this problem is to implement a variant of the 2-SUM algorithm covered in this week's lectures.
 
