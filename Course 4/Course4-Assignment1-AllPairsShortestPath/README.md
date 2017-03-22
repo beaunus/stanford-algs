@@ -1,8 +1,6 @@
-# stanford-algs
+# Course 4 - Shortest Paths Revisited, NP-Complete Problems and What To Do About Them
 
-## Course 4 - Shortest Paths Revisited, NP-Complete Problems and What To Do About Them
-
-### Assignment 1 - All Pairs Shortest Path
+## Assignment 1 - All Pairs Shortest Path
 
 In this assignment you will implement one or more algorithms for the all-pairs shortest-path problem. 
 
