@@ -36,8 +36,7 @@ naming convention for test case files. You are welcome to use similar file
 names to existing test cases, or propose your own. 
 1. Commit your new files to your *local repository*. 
 1. Push your *local branch* to your *GitHub repository*.  
-1. [Make a Pull Request]
-(https://guides.github.com/activities/forking/#making-a-pull-request) 
+1. [Make a Pull Request](https://guides.github.com/activities/forking/#making-a-pull-request) 
 from your GitHub repository dashboard.
 
 At that point, here's what will happen:
