@@ -4,15 +4,15 @@ Thank you for your interest in helping with our mission.
 
 If this is your first time contributing to a GitHub project, fear not. 
 When this repository was started, it was one of the first collaborations done 
-by the contributors.  Using GitHub is really quite easy.  
-You don't need to worry about making mistakes or breaking anything.  
+by the contributors.  Using GitHub is really quite easy. 
+You don't need to worry about making mistakes or breaking anything. 
 
-The collaborators of this repository are very patient and willing to help you.  
+The collaborators of this repository are very patient and willing to help you. 
 After all, we want *you* to help us.  
 
 ## Familiarize yourself with GitHub
 
-GitHub has quite an extensive library of training materials.  
+GitHub has quite an extensive library of training materials. 
 They are all very helpful and easy to understand.
 
 https://guides.github.com/
