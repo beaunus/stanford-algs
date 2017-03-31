@@ -25,3 +25,8 @@ assignments.
 Any infringement on intellectual property rights is accidental.  If you feel 
 that this repository is out of line, please let us know and we will do our best 
 to comply with your request.
+
+## Contributing
+
+If you are interested in contributing, please read our 
+[CONTRIBUTING](CONTRIBUTING.md) guide.
