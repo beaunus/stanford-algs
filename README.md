@@ -2,31 +2,61 @@
 
 ## Overview
 
-This repository contains some example input files for Stanford's Coursera
-specialization [_Learn To Think Like A Computer Scientist_]
-(https://www.coursera.org/specializations/algorithms)
+This repository contains some example test case files for Stanford's Coursera
+specialization 
+[_Learn To Think Like A Computer Scientist_](https://www.coursera.org/specializations/algorithms)
 
 ## Intention
 
 These files are intended to be used as a supplement to the above course.
 
-In order to comply with the [Coursera Honor Code]
-(https://www.google.com/search?q=Coursera+Honor+Code),
+In order to comply with the 
+[Coursera Honor Code](https://www.google.com/search?q=Coursera+Honor+Code),
 please do not share any solutions to the _actual_ assignments from the course.
 
-If you would like to submit useful test cases, please submit a pull request.
+## Test Case Files
 
-## Disclaimer
+Each test case contains two files:
+<dl>
+  <dt>input file</dt>
+  <dd>
+    The file that your program should *read* in order to compute the result.
+  </dd>
+  <dt>output file</dt>
+  <dd>
+    The *exact* output that your program should *produce*.  This is the value 
+    that would be entered into the result box on the assignment submission 
+    page. 
+  </dd>
+  <dd>
+    If the assignment has multiple submission boxes for the same input, each 
+    box's value will be on a new line.  
+  </dd>
+</dl>
 
-The programming assignments themselves are intellectual property of the
-Coursera course.  The Coursera community has given permission to re-publish the 
-assignments.  
+### File Names
 
-Any infringement on intellectual property rights is accidental.  If you feel 
-that this repository is out of line, please let us know and we will do our best 
-to comply with your request.
+Files are named according to an arbitrary **_index_** and the 
+**_problem size_**.
+
+For example, the file ```input1_2.txt``` is an *input* file for a 
+*problem size* of 2.  The file ```output1_2.txt``` is the corresponding 
+*output* file for that input.  
+
+Similarly, the files ```input35_8192.txt``` and ```output35_8192.txt``` are 
+corresponding files for a *problem size* of 8192.
 
 ## Contributing
 
 If you are interested in contributing, please read our 
 [CONTRIBUTING](CONTRIBUTING.md) guide.
+
+## Disclaimer
+
+The programming assignments themselves are intellectual property of the
+Coursera course.  The Coursera community has given permission to re-publish 
+the assignments.  
+
+Any infringement on intellectual property rights is accidental.  If you feel 
+that this repository is out of line, please let us know and we will do our 
+best to comply with your request.
