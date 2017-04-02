@@ -44,7 +44,7 @@ Tester class.
 Running the Tester requires only a single command.  It's long, but you'll get 
 the hang of it.
 
-```shell
+```
 java -cp path/to/solution/classes:path/to/Tester/class Tester [your solution class name] {list of test case input files}
 ```
 
@@ -57,7 +57,7 @@ For example, imagine this:
 
 You can run the following command:
 
-```shell
+```
 java -cp ~/stanford-algs/build/classes:~/git/stanford-algs/build/classes Tester Course4Assignment1 ~/git/stanford-algs/Course4/Assignment1/input*.txt
 ```
 
@@ -65,7 +65,6 @@ The system will run your *Course4Assignment1* class on all of the input files
 in the specified folder.  
 * If they match, you will see 
 ```Your result matches the test case.```. 
-* If they don't match, you will see 
-```Your result DOES NOT matches the test case.
+* If they don't match, you will see ```Your result DOES NOT matches the test case.
 Press "ENTER" to continue...
 ```.
