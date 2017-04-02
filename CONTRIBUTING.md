@@ -31,9 +31,8 @@ this repository. Choose an assignment that needs test cases.
 1. In your local repository, make a branch for your new unconfirmed test files. 
 For example, make a branch called "unconfirmedTestCases3.2" 
 if you are working on Course 3 Assignment 2.
-1. Make some test case files. **Note** that we have yet to decide on an file 
-naming convention for test case files. You are welcome to use similar file 
-names to existing test cases, or propose your own. 
+1. Make some test case files. **Note** Please use the standard 
+[naming convention](https://github.com/beaunus/stanford-algs#file-names).
 1. Commit your new files to your *local repository*. 
 1. Push your *local branch* to your *GitHub repository*.  
 1. [Make a Pull Request](https://guides.github.com/activities/forking/#making-a-pull-request) 
