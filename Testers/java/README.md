@@ -63,11 +63,5 @@ java -cp ~/stanford-algs/build/classes:~/git/stanford-algs/build/classes Tester 
 
 The system will run your *Course4Assignment1* class on all of the input files 
 in the specified folder.  
-* If they match, you will see 
-```
-Your result matches the test case.
-```. 
-* If they don't match, you will see 
-```Your result DOES NOT matches the test case.
-Press "ENTER" to continue...
-```.
+* If they match, you will see ```Your result matches the test case.```. 
+* If they don't match, you will see ```Your result DOES NOT matches the test case. Press "ENTER" to continue...```.
