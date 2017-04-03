@@ -23,15 +23,14 @@ public class Tester {
       String outputFilename = inputFilename.replaceAll("input", "output");
 
       System.out.println(" inputFilename => " + inputFilename);
-      System.out.println("        result => " + result);
-      System.out.println("outputFilename => " + outputFilename);
       String expectedResult = null;
       expectedResult = new String(Files.readAllBytes(Paths.get(outputFilename)), "UTF-8");
-      System.out.println("expectedResult => " + expectedResult);
+      System.out.print("\texpectedResult => " + expectedResult);
+      System.out.print("\t   your result => " + result);
       if (result.equals(expectedResult)) {
-        System.out.println("Your result matches the test case.");
+        System.out.println("\tYour result matches the test case.");
       } else {
-        System.out.println("Your result DOES NOT matches the test case.");
+        System.out.println("\tYour result DOES NOT matches the test case.");
         System.out.println("Press \"ENTER\" to continue...");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
