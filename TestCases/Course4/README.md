@@ -1,4 +1,4 @@
-# Couse 3. Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming
+# Couse 4. Shortest Paths Revisited, NP-Complete Problems and What To Do About Them
 
 ## Programming Assignment #1
 
