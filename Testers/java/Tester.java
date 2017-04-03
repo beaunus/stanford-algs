@@ -50,7 +50,7 @@ public class Tester {
       // Initialize a Class and Method object to invoke.
       Class<?> c = Class.forName(className);
       Class<?>[] argTypes = new Class[] {String[].class};
-      Method simpleSolution = c.getDeclaredMethod("main", argTypes);
+      Method main = c.getDeclaredMethod("main", argTypes);
       String[] args = {filename};
 
       // Capture and return the standard output of the main function.
@@ -62,7 +62,7 @@ public class Tester {
       // Tell Java to use your special stream
       System.setOut(ps);
 
-      simpleSolution.invoke(null, (Object) args);
+      main.invoke(null, (Object) args);
 
       // Return System.out to the initial stream.
       System.out.flush();
