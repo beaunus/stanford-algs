@@ -10,11 +10,15 @@ import java.util.Scanner;
 
 public class Tester {
   public static void main(String[] args) throws UnsupportedEncodingException, IOException {
+    // Initialize the className that will be used to test the input files.
+    String className = args[0];
+
     System.out.println("Testing your code's output with the expected output.");
     System.out.println();
-
-    String className = args[0];
     System.out.println("Your class name => " + className);
+
+    // Retrieve the main method of the solution class.
+    Method main = getMainMethod(className);
 
     // Iterate over all the filenames in the command-line arguments.
     for (int i = 1; i < args.length; i++) {
@@ -23,7 +27,7 @@ public class Tester {
       String outputFilename = inputFilename.replaceAll("input", "output");
 
       // Get the result of calling the solution class's main() method on this file.
-      String result = callMain(className, inputFilename);
+      String result = callMethod(main, inputFilename);
 
       // Display the results of this test case file.
       System.out.println(" inputFilename => " + inputFilename);
@@ -44,12 +48,24 @@ public class Tester {
     }
   }
 
-  private static String callMain(String className, String filename) {
+  private static Method getMainMethod(String className) {
     try {
-      // Initialize a Class and Method object to invoke.
       Class<?> c = Class.forName(className);
       Class<?>[] argTypes = new Class[] {String[].class};
       Method main = c.getDeclaredMethod("main", argTypes);
+      return main;
+    } catch (ClassNotFoundException x) {
+      System.err.println("The specified class name cannot be found.");
+      x.printStackTrace();
+    } catch (NoSuchMethodException x) {
+      System.err.println("The specified class does not have a main method.");
+      x.printStackTrace();
+    }
+    return null;
+  }
+
+  private static String callMethod(Method method, String filename) {
+    try {
       String[] args = {filename};
 
       // Capture and return the standard output of the main function.
@@ -61,17 +77,13 @@ public class Tester {
       // Tell Java to use your special stream
       System.setOut(ps);
 
-      main.invoke(null, (Object) args);
+      method.invoke(null, (Object) args);
 
       // Return System.out to the initial stream.
       System.out.flush();
       System.setOut(old);
 
       return baos.toString();
-    } catch (ClassNotFoundException x) {
-      x.printStackTrace();
-    } catch (NoSuchMethodException x) {
-      x.printStackTrace();
     } catch (IllegalAccessException x) {
       x.printStackTrace();
     } catch (InvocationTargetException x) {
