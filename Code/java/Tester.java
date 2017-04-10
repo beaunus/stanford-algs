@@ -52,14 +52,16 @@ public class Tester {
       final String result = ClassCaller.callMethod(main, Arrays.copyOfRange(args, i, i + 1));
       System.out.print("\t   your result => " + result);
 
-      if (result.equals(expectedResult)) {
+      if (result.trim().equals(expectedResult.trim())) {
         System.out.println("\tYour result matches the test case.");
       } else {
         System.out.println("\tYour result DOES NOT matches the test case.");
         System.out.println("Press \"ENTER\" to continue...");
-        Scanner scanner = new Scanner(System.in, "UTF-8");
-        scanner.nextLine();
-        scanner.close();
+        try {
+          System.in.read();
+        } catch (IOException ioe) {
+          ioe.printStackTrace();
+        } 
       }
       System.out.println();
     }
