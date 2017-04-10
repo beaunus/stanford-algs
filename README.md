@@ -36,15 +36,28 @@ Each test case contains two files:
 
 ### File Names
 
-Files are named according to an arbitrary **_index_** and the 
-**_problem size_**.
+File names contain the following tokens, each separated by a single "_" 
+character.
+* [input/output]
+* [contributor]
+* [index] (arbitrary)
+* [problem size]
 
-For example, the file ```input1_2.txt``` is an *input* file for a 
-*problem size* of 2.  The file ```output1_2.txt``` is the corresponding 
-*output* file for that input.  
+For example, the file ```input_beaunus_1_2.txt``` is *beaunus*'s *input* file 
+for a *problem size* of 2.  The file ```output_beaunus_1_2.txt``` is the 
+corresponding *output* file for that input.  
 
-Similarly, the files ```input35_8192.txt``` and ```output35_8192.txt``` are 
-corresponding files for a *problem size* of 8192.
+Similarly, the files ```input_badmf_35_8192.txt``` and 
+```output_badmf_35_8192.txt``` are corresponding files for *badmf*'s test 
+cases of *problem size* 8192.
+
+Why is the *contributor*'s name included?
+* Individual contributors have control over the indices in their files.
+* Developers can easily batch delete and create their own files with shell 
+commands like ```rm *myname*.txt```.  Other contributor's files are untouched.
+* Contributors can easily modify the README.md for a particular assignment if 
+their files require explanation.  For example, a contributor may want to state 
+which *edge cases* their files cover, if any.
 
 ## Contributing
 
