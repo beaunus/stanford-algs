@@ -57,7 +57,7 @@ public class Tester {
       } else {
         System.out.println("\tYour result DOES NOT matches the test case.");
         System.out.println("Press \"ENTER\" to continue...");
-        Scanner scanner = new Scanner(System.in, "UTF-16");
+        Scanner scanner = new Scanner(System.in, "UTF-8");
         scanner.nextLine();
         scanner.close();
       }
