@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
+dependencies {
+  testCompile 'junit:junit:4.12'
+}
+
+repositories {
+  mavenCentral()
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+checkstyle.toolVersion = 7.3
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+task myJavadocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    classpath = configurations.compile
+}
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['Code/java']
+    }
+  }
+}
