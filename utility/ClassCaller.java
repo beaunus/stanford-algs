@@ -9,6 +9,8 @@ import java.lang.reflect.Method;
 /**
  * A class to encapsulate methods for calling the main function of a class and returning the
  * System.out output as a String.
+ * 
+ * @author beaunus
  */
 public class ClassCaller {
   /**
