@@ -40,7 +40,7 @@ task myJavadocs(type: Javadoc) {
 sourceSets {
   main {
     java {
-      srcDirs = ['Code/java']
+      srcDirs = [projectDir]
     }
   }
 }
