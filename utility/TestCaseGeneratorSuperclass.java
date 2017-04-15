@@ -22,6 +22,8 @@ public class TestCaseGeneratorSuperclass {
   /**
    * Generate the test cases.
    *
+   * <p>This main method relies on public methods in the extending class.
+   *
    * @param args [method to call] [solver class] {[args to method]}
    */
   public static void main(String[] args) {
