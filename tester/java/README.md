@@ -65,15 +65,15 @@ java -cp path/to/solution/classes:path/to/Tester/class Tester [your solution cla
 
 You can also use "*" characters to let the shell do most of the work. 
 For example, imagine this:
-* Your solution classes are in ```~/stanford-algs/build/classes``` 
-* The Tester class is in ```~/git/stanford-algs/build/classes```
+* Your solution classes are in ```/Users/me/stanford-algs/build/classes``` 
+* The Tester class is in ```/Users/me/git/stanford-algs/build/classes```
 * You want to test your class ```Course4Assignment1```
-* The test case input files are in ```~/git/stanford-algs/Course4/Assignment1```
+* The test case input files are in ```/Users/me/git/stanford-algs/Course4/Assignment1```
 
 You can run the following command:
 
 ```
-java -cp ~/stanford-algs/build/classes:~/git/stanford-algs/build/classes Tester Course4Assignment1 ~/git/stanford-algs/Course4/Assignment1/input*.txt
+java -cp /Users/me/stanford-algs/build/classes:/Users/me/git/stanford-algs/build/classes Tester Course4Assignment1 /Users/me/git/stanford-algs/Course4/Assignment1/input*.txt
 ```
 
 The system will run your *Course4Assignment1* class on all of the input files 
