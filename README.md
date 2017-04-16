@@ -14,6 +14,20 @@ In order to comply with the
 [Coursera Honor Code](https://www.google.com/search?q=Coursera+Honor+Code),
 please do not share any solutions to the _actual_ assignments from the course.
 
+## Usage
+
+### Test Cases
+
+If you want to simply use the test cases, look in the 
+[testCases](tree/master/testCases) 
+folder.
+
+### Testers
+
+If you want to use automated testers, look in the 
+[tester](tree/master/tester) 
+folder.
+
 ## Test Case Files
 
 Each test case contains two files:

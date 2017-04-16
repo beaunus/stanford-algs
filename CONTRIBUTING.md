@@ -46,6 +46,29 @@ If they do, we'll just let you know. You can make adjustments and re-submit.
 1. Once the files have been confirmed by *multiple users*, they will be merged 
 with the master branch.
 
+## Contributing test cases only
+
+If you want to contribute test cases:
+
+1. On your local repository, create a branch called "unconfirmedTestCasesX.x"
+1. Use the file naming conventions on the 
+[Project page](https://github.com/beaunus/stanford-algs).
+1. Put your test cases in the appropriate folder.  For example 
+```testCases/courseX/assignmentX```.
+1. Commit your files and push your test cases to your GitHub account.
+1. Submit a pull request for your branch.
+
+## Contributing testers
+
+Since different languages have different features, testers are likely to be 
+very different from each other.
+
+Have a look at the ```tester``` folder and try your best to do something 
+similar to the existing testers.  
+
+If you add a tester for a new language, please create a suitable README.md file 
+for that tester, so that others can easily understand your thinking.
+
 ## Getting help
 
 If you would like to know more about our project, feel free to contact one of 
