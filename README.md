@@ -19,13 +19,13 @@ please do not share any solutions to the _actual_ assignments from the course.
 ### Test Cases
 
 If you want to simply use the test cases, look in the 
-[testCases](tree/master/testCases) 
+[testCases](https://github.com/beaunus/stanford-algs/tree/master/testCases) 
 folder.
 
 ### Testers
 
 If you want to use automated testers, look in the 
-[tester](tree/master/tester) 
+[tester](https://github.com/beaunus/stanford-algs/tree/master/tester) 
 folder.
 
 ## Test Case Files
