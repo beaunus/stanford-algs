@@ -19,7 +19,7 @@ public class ClassCaller {
    * @param className the class whose main Method should be returned.
    * @return the main Method
    */
-  public static Method getMainMethod(String className) {
+  public static Method getMethod(String className, String methodName) {
     try {
       // Get the Class object for the specified className.
       Class<?> myClass = Class.forName(className);
@@ -27,13 +27,13 @@ public class ClassCaller {
       Class<?>[] argTypes = new Class[] {String[].class};
 
       // Get and return the main Method.
-      Method main = myClass.getDeclaredMethod("main", argTypes);
+      Method main = myClass.getDeclaredMethod(methodName, argTypes);
       return main;
     } catch (ClassNotFoundException cnfe) {
       System.err.println("The specified class name cannot be found.");
       cnfe.printStackTrace();
     } catch (NoSuchMethodException nsme) {
-      System.err.println("The specified class does not have a main method.");
+      System.err.println("The specified class does not have a '" + methodName + "' method.");
       nsme.printStackTrace();
     }
     return null;

@@ -1,3 +1,5 @@
+package tester.java;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -31,7 +33,7 @@ public class Tester {
     System.out.println("Your class name => " + className);
 
     // Retrieve the main method of the solution class.
-    Method main = ClassCaller.getMainMethod(className);
+    Method main = ClassCaller.getMethod(className, "main");
 
     // Iterate over all the filenames in the command-line arguments.
     for (int i = 1; i < args.length; i++) {
