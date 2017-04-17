@@ -1,12 +1,12 @@
 package tester.java;
 
+import utility.ClassCaller;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
-import utility.ClassCaller;
 
 /** A class to compare an assignment's solution output to the expected output of a test case. */
 public class Tester {
@@ -47,24 +47,24 @@ public class Tester {
       String expectedResult = null;
       try {
         expectedResult = new String(Files.readAllBytes(Paths.get(outputFilename)), "UTF-8");
-      } catch (IOException ioe) {
-        ioe.printStackTrace();
+        System.out.print("\texpectedResult => " + expectedResult);
+      } catch (IOException exception) {
+        exception.printStackTrace();
       }
-      System.out.print("\texpectedResult => " + expectedResult);
 
       // Get the result of calling the solution class's main() method on this file.
       final String result = ClassCaller.callMethod(main, Arrays.copyOfRange(args, i, i + 1));
       System.out.print("\t   your result => " + result);
 
-      if (result.trim().equals(expectedResult.trim())) {
+      if (expectedResult != null && result.trim().equals(expectedResult.trim())) {
         System.out.println("\tYour result matches the test case.");
       } else {
         System.out.println("\tYour result DOES NOT matches the test case.");
         System.out.println("Press \"ENTER\" to continue...");
         try {
           System.in.read();
-        } catch (IOException ioe) {
-          ioe.printStackTrace();
+        } catch (IOException exception) {
+          exception.printStackTrace();
         } 
       }
       System.out.println();

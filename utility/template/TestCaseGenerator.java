@@ -1,5 +1,9 @@
 // Be sure to put the appropriate package name
+
 package utility.template;
+
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -9,9 +13,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
-
-import utility.ClassCaller;
-import utility.AbstractTestCaseGenerator;
 
 /**
  * An test case generator for courseX assignmentX.

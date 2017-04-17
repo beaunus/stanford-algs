@@ -29,12 +29,12 @@ public class ClassCaller {
       // Get and return the main Method.
       Method main = myClass.getDeclaredMethod(methodName, argTypes);
       return main;
-    } catch (ClassNotFoundException cnfe) {
+    } catch (ClassNotFoundException exception) {
       System.err.println("The specified class name cannot be found.");
-      cnfe.printStackTrace();
-    } catch (NoSuchMethodException nsme) {
+      exception.printStackTrace();
+    } catch (NoSuchMethodException exception) {
       System.err.println("The specified class does not have a '" + methodName + "' method.");
-      nsme.printStackTrace();
+      exception.printStackTrace();
     }
     return null;
   }
@@ -66,12 +66,12 @@ public class ClassCaller {
       System.setOut(old);
 
       return baos.toString("UTF-16");
-    } catch (IllegalAccessException iae) {
-      iae.printStackTrace();
-    } catch (InvocationTargetException ite) {
-      ite.printStackTrace();
-    } catch (UnsupportedEncodingException uee) {
-      uee.printStackTrace();
+    } catch (IllegalAccessException exception) {
+      exception.printStackTrace();
+    } catch (InvocationTargetException exception) {
+      exception.printStackTrace();
+    } catch (UnsupportedEncodingException exception) {
+      exception.printStackTrace();
     }
     return null;
   }

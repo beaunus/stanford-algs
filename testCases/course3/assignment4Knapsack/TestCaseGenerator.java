@@ -1,18 +1,18 @@
 package testCases.course3.assignment4Knapsack;
 
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
-
-import utility.ClassCaller;
-import utility.AbstractTestCaseGenerator;
 
 /**
  * An test case generator for course3 assignment4Knapsack.
@@ -29,10 +29,16 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     super(methodToUse, solverClassName, args);
   }
 
+  /**
+   * Run the TestCaseGenerator.
+   *
+   * @param args [method to call] [solver class] {[args to method]}
+   */
   public static void main(String[] args) {
     AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
     TestCaseGenerator tcg =
         new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    tcg.generateInputFiles();
   }
 
   /**
@@ -67,7 +73,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         int maxWeight = size / 2;
 
         // Initialize the list of file lines
-        LinkedList<String> lines = new LinkedList<String>();
+        ArrayList<String> lines = new ArrayList<String>();
 
         // Add the first line to lines.
         lines.add(size + " " + numberOfItems);

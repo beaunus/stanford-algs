@@ -1,7 +1,9 @@
 package testCases.course3.assignment2Clustering.question2;
 
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
+
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -9,12 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
-
-import utility.ClassCaller;
-import utility.AbstractTestCaseGenerator;
 
 /**
  * An test case generator for course3 assignment2Clustering question2.
@@ -31,10 +28,16 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     super(methodToUse, solverClassName, args);
   }
 
+  /**
+   * Run the TestCaseGenerator.
+   *
+   * @param args [method to call] [solver class] {[args to method]}
+   */
   public static void main(String[] args) {
     AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
     TestCaseGenerator tcg =
         new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    tcg.generateInputFiles();
   }
 
   /**
@@ -50,8 +53,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     int filenameStartingIndex = Integer.parseInt(args[0]);
 
     // Since some of the (numberOfVertices, numberOfBits) pairs are incompatible, 
-    // we should give up if more than 6 consecutive attempts lead to only a single component.
-    final int MAX_ATTEMPTS = 6;
+    final int maxAttempts = 6;
     final int[] numBitsArray = {4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24};
 
     // Iterate over all of the given numberOfVertices arguments
@@ -69,9 +71,9 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         boolean foundSolution = false; 
         int numberOfAttempts = 0;
         // Attempt to make a test case, until the number of attempts exceeds the MAX_ATTEMPTS
-        while (!foundSolution && numberOfAttempts < MAX_ATTEMPTS) {
+        while (!foundSolution && numberOfAttempts < maxAttempts) {
           // Initialize variables
-          LinkedList<String> lines = new LinkedList<String>();
+          ArrayList<String> lines = new ArrayList<String>();
           lines.add(numberOfVertices + " " + numberOfBits);
           StringBuilder thisLine;
           StringBuilder thisLineWithSpaces;
@@ -129,8 +131,8 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             numberOfAttempts++;
             try {
               Files.delete(file);
-            } catch (IOException e) {
-              e.printStackTrace();
+            } catch (IOException exception) {
+              exception.printStackTrace();
             }
           } else {
             foundSolution = true; 
@@ -139,7 +141,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             System.out.println("\t test case file generated.");
           }
         }
-        if (numberOfAttempts >= MAX_ATTEMPTS && numberOfVertices > 1000) {
+        if (numberOfAttempts >= maxAttempts && numberOfVertices > 1000) {
           System.out.println(
               "Giving up because the numberOfVertices is incompatible with the numberOfBits.");
           break;

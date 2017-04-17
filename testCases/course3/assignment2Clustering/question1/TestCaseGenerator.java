@@ -1,7 +1,9 @@
 package testCases.course3.assignment2Clustering.question1;
 
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
+
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -11,9 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
-
-import utility.ClassCaller;
-import utility.AbstractTestCaseGenerator;
 
 /**
  * An test case generator for course3 assignment2Clustering question1.
@@ -30,10 +29,16 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     super(methodToUse, solverClassName, args);
   }
 
+  /**
+   * Run the TestCaseGenerator.
+   *
+   * @param args [method to call] [solver class] {[args to method]}
+   */
   public static void main(String[] args) {
     AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
     TestCaseGenerator tcg =
         new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    tcg.generateInputFiles();
   }
 
   /**
@@ -65,11 +70,6 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
 
       // Process until there are 4 unique solutions.
       while (solutions.size() < 4) {
-        // Setup the name of the input file.
-        String inputFilename =
-            "input_completeRandom_" + filenameStartingIndex + "_" + numberOfVertices + ".txt";
-        filenameStartingIndex++;
-
         // Use an ArrayList to store the lines that will be added to the file.
         ArrayList<String> lines = new ArrayList<String>();
         // Add the first line, which defines the problem size.
@@ -82,6 +82,10 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             lines.add(j + " " + k + " " + cost);
           }
         }
+
+        // Setup the name of the input file.
+        String inputFilename =
+            "input_completeRandom_" + filenameStartingIndex + "_" + numberOfVertices + ".txt";
 
         // Create the input file and write the lines.
         Path inputFile = Paths.get(inputFilename);
@@ -98,14 +102,15 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
           // If the solution is not unique, delete the input file
           try {
             Files.delete(inputFile);
-          } catch (IOException e) {
-            e.printStackTrace();
+          } catch (IOException exception) {
+            exception.printStackTrace();
           }
         } else {
           // If the solution is unique, generate an output file.
           solutions.add(solution);
           generateOutputFile(inputFilename, solution);
           System.out.println("\t" + solutions.size() + " unique file(s) generated.");
+          filenameStartingIndex++;
         }
       }
     }

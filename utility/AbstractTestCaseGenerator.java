@@ -15,23 +15,28 @@ public abstract class AbstractTestCaseGenerator {
   Method inputFileGeneratorMethod;
   String[] argsForInputFileGenerator;
 
+  /**
+   * Construct a new {@link AbstractTestCaseGenerator}.
+   *
+   * @param methodToUse the method to use for generating the input files
+   * @param solverClassName the class used to solve the input files
+   * @param args arguments to the input file generator
+   */
   public AbstractTestCaseGenerator(String methodToUse, String solverClassName, String[] args) {
     solverMethod = ClassCaller.getMethod(solverClassName, "main");
     Class<?>[] argTypes = new Class[] {Method.class, String[].class};
     try {
       inputFileGeneratorMethod = this.getClass().getDeclaredMethod(methodToUse, argTypes);
-    } catch (NoSuchMethodException e) {
+    } catch (NoSuchMethodException exception) {
       System.out.println("methodToUse => " + methodToUse);
       displayAvailableMethods(this.getClass());
-      e.printStackTrace();
-      System.exit(0);
-    } catch (SecurityException e) {
-      e.printStackTrace();
-      System.exit(0);
+      exception.printStackTrace();
+    } catch (SecurityException exception) {
+      exception.printStackTrace();
     }
-    argsForInputFileGenerator = args;
-    generateInputFiles();
+    argsForInputFileGenerator = args.clone();
   }
+
   /**
    * Generate the test cases.
    *
@@ -41,15 +46,13 @@ public abstract class AbstractTestCaseGenerator {
     // Confirm that the command-line arguments are valid.
     if (args.length < 2) {
       System.out.println("usage:");
-      System.out.println(
-          myClass.getName()
-              + " [method to call] [solver class] {[args to method]}");
+      System.out.println(myClass.getName() + " [method to call] [solver class] {[args to method]}");
       displayAvailableMethods(myClass);
       System.out.println();
       System.exit(0);
     }
   }
-  
+
   private static void displayAvailableMethods(Class<?> myClass) {
     System.out.println("\nAvailable methods: ");
     for (Method method : myClass.getDeclaredMethods()) {
@@ -59,20 +62,22 @@ public abstract class AbstractTestCaseGenerator {
     }
   }
 
+  /** Generate input files. */
   public void generateInputFiles() {
     try {
       inputFileGeneratorMethod.invoke(this, solverMethod, argsForInputFileGenerator);
-    } catch (IllegalAccessException e) {
+    } catch (IllegalAccessException exception) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IllegalArgumentException e) {
+      exception.printStackTrace();
+    } catch (IllegalArgumentException exception) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (InvocationTargetException e) {
+      exception.printStackTrace();
+    } catch (InvocationTargetException exception) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      exception.printStackTrace();
     }
   }
+
   /**
    * Generate an output file for the corresponding input file. The solution has already been
    * calculated.
@@ -90,8 +95,8 @@ public abstract class AbstractTestCaseGenerator {
     lines.add(solution.trim());
     try {
       Files.write(outputFile, lines, Charset.forName("UTF-8"));
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
+    } catch (IOException exception) {
+      exception.printStackTrace();
     }
   }
 }

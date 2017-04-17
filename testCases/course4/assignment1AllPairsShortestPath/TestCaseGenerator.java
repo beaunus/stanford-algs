@@ -1,5 +1,7 @@
-// Be sure to put the appropriate package name
 package testCases.course4.assignment1AllPairsShortestPath;
+
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -7,13 +9,10 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
-
-import utility.ClassCaller;
-import utility.AbstractTestCaseGenerator;
 
 /**
  * An test case generator for courseX assignmentX.
@@ -30,10 +29,16 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     super(methodToUse, solverClassName, args);
   }
 
+  /**
+   * Run the TestCaseGenerator.
+   *
+   * @param args [method to call] [solver class] {[args to method]}
+   */
   public static void main(String[] args) {
     AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
     TestCaseGenerator tcg =
         new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    tcg.generateInputFiles();
   }
 
   /**
@@ -65,7 +70,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
       while (solutions.size() < 4) {
 
         // Initialize the list of file lines
-        LinkedList<String> lines = new LinkedList<String>();
+        ArrayList<String> lines = new ArrayList<String>();
 
         // A counter for number of edges
         int numberOfEdges = 0;
@@ -86,7 +91,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         }
 
         // Prepend the lines with the number of vertices and number of edges.
-        lines.addFirst(numberOfVertices + " " + numberOfEdges);
+        lines.add(0, numberOfVertices + " " + numberOfEdges);
 
         // Create the filename for the test case.
         String inputFilename = "input_random";
