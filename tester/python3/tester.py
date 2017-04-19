@@ -19,20 +19,21 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1):
 	# read the test cases titles
 	test_cases = []
 	for filename in os.listdir(test_cases_folder):
-		if filename[0] == 'o':
+		if filename[0] == 'o' or filename == 'README.md':
 			continue
 		# get all input files
 		file_type, file_user, file_num, file_size = filename[:-4].split('_')
+		file_size = int(file_size)
 		fileref = [file_user, file_num, file_size]
 
 		# if the size is bigger than the max_size option, don't run that test
-		if max_size != -1 and int(file_size) >= max_size:
-			print('skipped test case ' + '_'.join(fileref))
+		if max_size != -1 and file_size > max_size:
+			print('skipped test case ' + '_'.join([str(x) for x in fileref]))
 			continue
 		
 		# construct the output
 		output_file = (test_cases_folder +
-				'/output_' + '_'.join([x for x in fileref]) + '.txt')
+				'/output_' + '_'.join([str(x) for x in fileref]) + '.txt')
 		# read the expected output
 		with open(output_file, 'r') as ofile:
 			output = []
@@ -50,9 +51,9 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1):
 	tests_passed = 0
 	tests_total = 0
 	for fileref, expected_output in test_cases:
-		filename = test_cases_folder + '/input' + '_'.join(x for x in fileref) + '.txt'
+		filename = test_cases_folder + '/input_' + '_'.join(str(x) for x in fileref) + '.txt'
 
-		alg_output = alg(filename).split('\n')
+		alg_output = str(alg(filename)).split('\n')
 
 		if len(alg_output) != len(expected_output):
 			print('Error. Your algorithm should be returning', len(expected_output),
@@ -61,7 +62,7 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1):
 			return
 
 		answers_ok = []
-		print('_'.join(fileref), end='\t')
+		print('_'.join([str(x) for x in fileref]), end='\t')
 		errors_buffer = ''
 		for i in range(len(alg_output)):
 			if expected_output[i] == alg_output[i]:
