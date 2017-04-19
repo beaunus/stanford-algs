@@ -53,7 +53,11 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1):
 	for fileref, expected_output in test_cases:
 		filename = test_cases_folder + '/input_' + '_'.join(str(x) for x in fileref) + '.txt'
 
-		alg_output = str(alg(filename)).split('\n')
+		alg_output_unprocessed = alg(filename)
+		if not isinstance(alg_output_unprocessed, list):
+			alg_output_unprocessed = [alg_output_unprocessed]
+
+		alg_output = [str(x) for x in alg_output_unprocessed]
 
 		if len(alg_output) != len(expected_output):
 			print('Error. Your algorithm should be returning', len(expected_output),

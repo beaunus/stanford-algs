@@ -4,19 +4,21 @@
 
 The *Tester* will proceed as follows:
 
-1. For each of the files in the [array of input files to verify]
+1. For each of the files in the [list of input files to verify]
   1. Run [your code] with the current *single file* as the *first argument*.
   1. Compare [your code]'s output with the expected output.
     1. Indicate whether or not there is a match.
 
 ## Python
 
+**NOTE**: The tester has been only tested with Linux. If you're having problem with other Operating System, please [open an issue](https://github.com/beaunus/stanford-algs/issues/new).
+
 ### Prerequisites 
 
 The Tester has a critical requirement for your solution code:
-* You *must* define a function which accepts a single argument, the input file path, and returns a string with the values for each solution box separated with the new line char, `\n`
+* You *must* define a function which accepts a single argument, the input file path, and returns a list with the values for each solution box. If the assignment has only one solution box, you can either return the single value, or an array with just one item.
 
-For example, if the assignment has 2 solution boxes and the correct result is 'first' for the first box and 'second' for the second box, the function you define should return the string `first\nsecond`.
+For example, if the assignment has 2 solution boxes and the correct result is 'first' for the first box and 'second' for the second box, the function you define should return the list `['first', 'second']`. For an assignment with 'solution' as its correct result, you could either return `solution`, or `[solution]`.
 
 If you want to have a different file for each submission box, you can easily create a new file that imports each subproblem and acts as a wrapper. And if you want to check just 1 subproblem, you can return an arbitrary value for the rest of subproblem, and just check the one you're interested about.
 
