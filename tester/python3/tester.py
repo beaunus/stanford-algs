@@ -19,7 +19,7 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1):
 	# read the test cases titles
 	test_cases = []
 	for filename in os.listdir(test_cases_folder):
-		if filename[0] == 'o' or filename == 'README.md':
+		if filename[:5] != 'input':
 			continue
 		# get all input files
 		file_type, file_user, file_num, file_size = filename[:-4].split('_')
