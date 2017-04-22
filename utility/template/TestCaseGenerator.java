@@ -70,6 +70,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         inputFilename += ".txt";
 
         // Write the input file.
+        // THIS IS WHERE MOST OF THE CODE GOES.
         Path file = Paths.get(inputFilename);
         try {
           Files.write(file, lines, Charset.forName("UTF-8"));
