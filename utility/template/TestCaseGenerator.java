@@ -12,7 +12,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+
+import testCases.course3.assignment2Clustering.question1.TestCaseGenerator;
 
 /**
  * An test case generator for courseX assignmentX.
@@ -27,6 +30,18 @@ import java.util.HashSet;
 public class TestCaseGenerator extends AbstractTestCaseGenerator {
   public TestCaseGenerator(String methodToUse, String solverClassName, String[] args) {
     super(methodToUse, solverClassName, args);
+  }
+
+  /**
+   * Run the TestCaseGenerator.
+   *
+   * @param args [method to call] [solver class] {[args to method]}
+   */
+  public static void main(String[] args) {
+    AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
+    TestCaseGenerator tcg =
+        new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    tcg.generateInputFiles();
   }
 
   /**
