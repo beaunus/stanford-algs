@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import testCases.course3.assignment2Clustering.question1.TestCaseGenerator;
-
 /**
  * An test case generator for courseX assignmentX.
  *
