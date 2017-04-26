@@ -83,7 +83,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
       while (solutions.size() < 4) {
 
         // Initialize the list of file lines
-        ArrayList<String> lines = new ArrayList<String>();
+        HashSet<String> linesSet = new HashSet<String>();
 
         // Create the filename for the test case.
         String inputFilename = "input_mostlyCycles";
@@ -105,7 +105,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         int componentsCount = 0;
 
         while (!availableVertices.isEmpty()) {
-          int maxComponentSize = availableVertices.size() / 2;
+          int maxComponentSize = availableVertices.size();
           int numVerticesInThisComponent;
           // Take out a portion of the available vertices to put in a strongly connected component.
           maxComponentSize = Math.max(1, maxComponentSize);
@@ -130,24 +130,27 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
               int vertex = thisComponentVertices.remove(0);
               // Potentially add some other internal connections.
               if (!thisComponentVertices.isEmpty()
-                  && (ThreadLocalRandom.current().nextInt(101) < 3)) {
+                  && (ThreadLocalRandom.current().nextInt(101) < 20)) {
                 int numInternalConnections =
-                    ThreadLocalRandom.current().nextInt(numVerticesInThisComponent);
+                    ThreadLocalRandom.current()
+                        .nextInt(1 + (int) Math.sqrt(numVerticesInThisComponent) / 10);
                 for (int i = 0; i < numInternalConnections; i++) {
                   int internalVertexToConnect =
                       ThreadLocalRandom.current()
                           .nextInt((int) Math.sqrt(thisComponentVertices.size()));
-                  lines.add(vertex + " " + thisComponentVertices.get(internalVertexToConnect));
+                  linesSet.add(vertex + " " + thisComponentVertices.get(internalVertexToConnect));
                 }
               }
 
-              lines.add(prevVertex + " " + vertex);
+              linesSet.add(prevVertex + " " + vertex);
               prevVertex = vertex;
             }
             // Connect the end of the cycle to the beginning
-            lines.add(prevVertex + " " + startingVertex);
+            linesSet.add(prevVertex + " " + startingVertex);
           }
         }
+
+        ArrayList<String> lines = new ArrayList<String>(linesSet);
 
         // Sort the lines by tail vertex index
         lines.sort(new TailOrder());
