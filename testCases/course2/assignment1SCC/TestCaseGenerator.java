@@ -52,7 +52,8 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    *
    * <ol>
    *   <li>Shuffle an array of all potential vertices.
-   *   <li>Choose a subset of the shuffled array to belong to a strongly connected component.
+   *   <li>Choose a subset of the shuffled array to belong to a strongly connected component. The
+   *       subset is no larger than half the size of the entire graph.
    *   <li>Create a cycle within that subset.
    *   <li>Occasionally (3% of the time), add another internal connection within the strongly
    *       connected component.
@@ -104,14 +105,14 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         int componentsCount = 0;
 
         while (!availableVertices.isEmpty()) {
-          int maxComponentSize = availableVertices.size();
+          int maxComponentSize = availableVertices.size() / 2;
           int numVerticesInThisComponent;
           // Take out a portion of the available vertices to put in a strongly connected component.
           maxComponentSize = Math.max(1, maxComponentSize);
           numVerticesInThisComponent = ThreadLocalRandom.current().nextInt(maxComponentSize) + 1;
 
           if (componentsCount == 5) {
-            numVerticesInThisComponent = maxComponentSize;
+            break;
           }
 
           // Put the next available vertices into a new array.
