@@ -4,6 +4,7 @@ import utility.AbstractTestCaseGenerator;
 import utility.ClassCaller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -139,7 +140,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         }
 
         // Sort the lines by tail vertex index
-        lines.sort(new tailOrder());
+        lines.sort(new TailOrder());
 
         // Write the input file.
         Path file = Paths.get(inputFilename);
@@ -170,7 +171,12 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    *
    * @author beaunus
    */
-  private class tailOrder implements Comparator<String> {
+  private static class TailOrder implements Comparator<String>, Serializable {
+
+    /**
+     * Default value.
+     */
+    private static final long serialVersionUID = 1L;
 
     @Override
     public int compare(String s1, String s2) {
