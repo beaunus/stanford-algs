@@ -58,6 +58,9 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    *       connected component.
    * </ol>
    *
+   * Repeat the above process until there are 5 strongly connected components. The remaining
+   * vertices that have yet to be added to a component will be added to a sixth component.
+   *
    * @param solverMainMethod the main method that gives a solution with the given file
    * @param args the filenameStartingIndex, followed by an array of numbers of vertices
    */
@@ -98,12 +101,18 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Shuffle the array of vertices
         Collections.shuffle(availableVertices);
 
+        int componentsCount = 0;
+
         while (!availableVertices.isEmpty()) {
           int maxComponentSize = availableVertices.size();
           int numVerticesInThisComponent;
           // Take out a portion of the available vertices to put in a strongly connected component.
           maxComponentSize = Math.max(1, maxComponentSize);
           numVerticesInThisComponent = ThreadLocalRandom.current().nextInt(maxComponentSize) + 1;
+
+          if (componentsCount == 5) {
+            numVerticesInThisComponent = maxComponentSize;
+          }
 
           // Put the next available vertices into a new array.
           ArrayList<Integer> thisComponentVertices = new ArrayList<Integer>();
@@ -173,9 +182,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    */
   private static class TailOrder implements Comparator<String>, Serializable {
 
-    /**
-     * Default value.
-     */
+    /** Default value. */
     private static final long serialVersionUID = 1L;
 
     @Override
