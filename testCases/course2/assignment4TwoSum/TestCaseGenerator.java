@@ -69,17 +69,28 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Initialize the list of file lines
         ArrayList<String> lines = new ArrayList<String>();
 
-        Long prevL = null;
+        // Initialize a set to store values that have already been added to the file.
+        HashSet<Long> numsSoFar = new HashSet<Long>();
+        // The guaranteed number of sums present in the list so far.
+        int countSums = 0;
 
         for (int i = 0; i < numValues; i++) {
           long l;
-          if (prevL != null && ThreadLocalRandom.current().nextInt(10) == 1) {
-            l = ThreadLocalRandom.current().nextInt(-10000, 10001) - prevL;
+          // Occasionally, add a value that satisfies the 2SUM condition.
+          // As the number of matches increases, the probability decreases.
+          if (!numsSoFar.isEmpty() && ThreadLocalRandom.current().nextInt(countSums + 2) == 1) {
+            // Choose a value at random that has already been added to the list.
+            long match =
+                (long) numsSoFar.toArray()[ThreadLocalRandom.current().nextInt(numsSoFar.size())];
+            // Determine the value that will satisfy the match condition.
+            l = ThreadLocalRandom.current().nextInt(-10000, 10001) - match;
+            countSums++;
           } else {
-            l = ThreadLocalRandom.current().nextLong();
+            // Choose a value at random.
+            l = ThreadLocalRandom.current().nextLong(-99999999999L, 100000000000L);
           }
           lines.add("" + l);
-          prevL = l;
+          numsSoFar.add(l);
         }
 
         // Create the filename for the test case.
