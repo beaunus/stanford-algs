@@ -70,7 +70,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Initialize the list of file lines
         ArrayList<String> lines = new ArrayList<String>();
         
-        int minWeight = (int) Math.pow(numSymbols, (2/3)); 
+        int minWeight = (int) Math.pow(numSymbols, (5/3)); 
         int maxWeight = (int) Math.pow(numSymbols, 2); 
         
         lines.add("" + numSymbols); 
