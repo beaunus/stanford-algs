@@ -104,6 +104,10 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         String[] filenames = {inputFilename};
 
         String solution = ClassCaller.callMethod(solverMainMethod, filenames);
+        
+        if (solution.contains("1000000")) {
+          continue; 
+        }
 
         // create an output file for this solution only if it is a unique solution.
         if (!solutions.contains(solution)) {
