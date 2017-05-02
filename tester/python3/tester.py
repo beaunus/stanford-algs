@@ -114,6 +114,14 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 
 
 if __name__ == '__main__':
+	if (len(sys.argv) < 4):
+		print('usage: ' + __file__ + 
+				'path/to/your/algorithm.py path/to/testcases [options]\n')
+		print('valid options: ')
+		print('\tmax_size=[maximum input size]')
+		print('\tname=[function that returns solution]')
+		print('\tonly=[specific tests to run, excluding others]')
+		sys.exit()
 	tester_name, student_algorithm, test_cases_folder, *options = sys.argv
 	
 	valid_options = ['max_size', 'name', 'only']
@@ -132,7 +140,8 @@ if __name__ == '__main__':
 			only = opt_value.split(',')
 
 		if opt_name not in valid_options:
-			print('Unkown option "' + opt_name + '". Valid options are\n\t"name"\n\t"max_size"')
+			print('Unknown option "' + opt_name + 
+					'". Valid options are\n\t"name"\n\t"max_size"')
 			print('Option "'+ opt_name +'" not set')
 
 	option_values = [name, max_size, only]
