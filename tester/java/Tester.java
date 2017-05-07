@@ -89,13 +89,9 @@ public class Tester {
       // Infer the output filename from the input filename.
       String outputFilename = inputFilename.replaceAll("input", "output");
 
-      // Display the results of this test case file.
-      System.out.println("  inputFilename => " + inputFilename);
-      System.out.println(" outputFilename => " + outputFilename);
       String expectedResult = null;
       try {
         expectedResult = new String(Files.readAllBytes(Paths.get(outputFilename)), "UTF-8");
-        System.out.print("\texpectedResult => " + expectedResult);
       } catch (IOException exception) {
         exception.printStackTrace();
       }
@@ -103,20 +99,13 @@ public class Tester {
       // Get the result of calling the solution class's main() method on this file.
       String[] thisFilenameAsArray = {inputFilename};
       final String result = ClassCaller.callMethod(method, thisFilenameAsArray);
-      System.out.print("\t   your result => " + result);
-
       if (expectedResult != null && result.trim().equals(expectedResult.trim())) {
-        System.out.println("\tYour result matches the test case.");
+        System.out.println(inputFilename + "\t✔");
       } else {
-        System.out.println("\tYour result DOES NOT matches the test case.");
-        System.out.println("Press \"ENTER\" to continue...");
-        try {
-          System.in.read();
-        } catch (IOException exception) {
-          exception.printStackTrace();
-        }
+        System.out.println(inputFilename + "\t✘");
+        System.out.println("\tExpected: " + expectedResult.trim());
+        System.out.println("\t  Result: " + result.trim());
       }
-      System.out.println();
     }
   }
 
