@@ -114,9 +114,9 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 
 
 if __name__ == '__main__':
-	if (len(sys.argv) < 4):
+	if (len(sys.argv) < 3):
 		print('usage: ' + __file__ + 
-				'path/to/your/algorithm.py path/to/testcases [options]\n')
+				' path/to/your/algorithm.py path/to/testcases [options]\n')
 		print('valid options: ')
 		print('\tmax_size=[maximum input size]')
 		print('\tname=[function that returns solution]')
