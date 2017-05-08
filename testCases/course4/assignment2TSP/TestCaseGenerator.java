@@ -46,7 +46,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    *
    * <p>The problem size defines the number of "cities" in the tour.
    *
-   * <p>The "cities'" coordinates range from [0, numberOfCites^2].
+   * <p>The "cities'" coordinates range from [0, numberOfCites].
    *
    * @param solverMainMethod the main method that gives a solution with the given file
    * @param args the filenameStartingIndex, followed by an array of numbers of cities.
@@ -71,12 +71,12 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Initialize the list of file lines
         ArrayList<String> lines = new ArrayList<String>();
 
-        int maxCoordinate = (int) Math.pow(numCities, 2);
+        int maxCoordinate = numCities;
 
         lines.add("" + numCities);
         for (int i = 0; i < numCities; i++) {
-          int xCoord = ThreadLocalRandom.current().nextInt(maxCoordinate);
-          int yCoord = ThreadLocalRandom.current().nextInt(maxCoordinate);
+          double xCoord = ThreadLocalRandom.current().nextDouble(maxCoordinate);
+          double yCoord = ThreadLocalRandom.current().nextDouble(maxCoordinate);
           lines.add(xCoord + " " + yCoord);
         }
 
