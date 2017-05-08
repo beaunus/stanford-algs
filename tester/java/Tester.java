@@ -3,6 +3,7 @@ package tester.java;
 import utility.ClassCaller;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,11 +21,10 @@ public class Tester {
    * <p>Output filenames are derived from the input filenames, where the string "input" is replaced
    * by "output."
    *
-   * @param args the class name, followed by a list of input files, followed by options
-   *     <p>Options:
+   * @param args the class name, followed by a list of input files, followed by options:
    *     <ul>
-   *       <li>-maxsize:<maximum input size>
-   *       <li>-name:<method that returns solution>
+   *       <li>-maxsize:&lt;maximum input size&gt;
+   *       <li>-name:&lt;method that returns solution&gt;
    *     </ul>
    */
   public static void main(String[] args) {
@@ -49,7 +49,7 @@ public class Tester {
     }
 
     // Parse the solution class name.
-    String solutionClassName = args[argPointer++];
+    final String solutionClassName = args[argPointer++];
 
     // Parse the file names.
     ArrayList<String> filenames = new ArrayList<String>();
@@ -110,17 +110,19 @@ public class Tester {
       final String result = ClassCaller.callMethod(method, thisFilenameAsArray);
 
       // Display whether or not this test matches the expected results.
-      if (expectedResult != null && result.trim().equals(expectedResult.trim())) {
-        System.out.print("\033[32m");
-        System.out.println(inputFilename + "\t✔");
-        System.out.print("\033[0m");
-      } else {
-        System.out.print("\033[31m");
-        System.out.println(inputFilename + "\t✘");
-        System.out.println("\tExpected: " + expectedResult.trim());
-        System.out.println("\t  Result: " + result.trim());
-        System.out.print("\033[0m");
-        failedTests.add(inputFilename);
+      if (expectedResult != null) {
+        if (result.trim().equals(expectedResult.trim())) {
+          System.out.print("\033[32m");
+          System.out.println(inputFilename + "\t✔");
+          System.out.print("\033[0m");
+        } else {
+          System.out.print("\033[31m");
+          System.out.println(inputFilename + "\t✘");
+          System.out.println("\tExpected: " + expectedResult.trim());
+          System.out.println("\t  Result: " + result.trim());
+          System.out.print("\033[0m");
+          failedTests.add(inputFilename);
+        }
       }
     }
 
@@ -179,7 +181,10 @@ public class Tester {
    *
    * @author beaunus
    */
-  private static class InputSizeOrder implements Comparator<String> {
+  private static class InputSizeOrder implements Comparator<String>, Serializable {
+
+    /** Auto-generated serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
     @Override
     public int compare(String o1, String o2) {
