@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -26,21 +25,13 @@ public class Tester {
    *     <ul>
    *       <li>-maxsize:<maximum input size>
    *       <li>-name:<method that returns solution>
-   *       <li>-only:<specific tests to run, excluding others>
    *     </ul>
    */
   public static void main(String[] args) {
 
+    // If the usage is incorrect, display usage string.
     if (args.length < 2) {
-      System.out.println(
-          "Usage:"
-              + "java -cp <path to tester class>:<path to solution class> "
-              + Tester.class.getName()
-              + "  [-options] <solution class name> <list of input files>");
-      System.out.println("where options include:");
-      System.out.println("\t-maxsize        maximum input size");
-      System.out.println("\t-name           method that returns solution (default: main)");
-      System.out.println("\t-only           specific tests to run, excluding others");
+      displayUsageString();
       System.exit(0);
     }
 
@@ -71,6 +62,7 @@ public class Tester {
 
     // Display feedback to user.
     System.out.println("\nTesting your code's output with the expected output.\n");
+
     // Display options.
     for (Entry<String, String> entry : options.entrySet()) {
       System.out.println(entry.getKey() + " => " + entry.getValue());
@@ -153,6 +145,12 @@ public class Tester {
     }
   }
 
+  /**
+   * Return whether or not a filename is valid.
+   *
+   * @param string the filename to be validated
+   * @return whether or not the filename is valid
+   */
   private static boolean validateFilename(String string) {
     if (string.split("_").length == 4) {
       return true;
@@ -160,11 +158,27 @@ public class Tester {
     System.out.println(
         "'"
             + string
-            + "'"
-            + " must match the pattern '\033[1minput_description_index_problemSize.txt\033[0m'");
+            + "' must match the pattern '\033[1minput_description_index_problemSize.txt\033[0m'");
     return false;
   }
 
+  /** Display the class's usage string. */
+  private static void displayUsageString() {
+    System.out.println(
+        "Usage:"
+            + "java -cp <path to tester class>:<path to solution class> "
+            + Tester.class.getName()
+            + "  [-options] <solution class name> <list of input files>");
+    System.out.println("where options include:");
+    System.out.println("\t-maxsize        maximum input size");
+    System.out.println("\t-name           method that returns solution (default: main)");
+  }
+
+  /**
+   * A comparator to sort filenames based on the problem size.
+   *
+   * @author beaunus
+   */
   private static class InputSizeOrder implements Comparator<String> {
 
     @Override
