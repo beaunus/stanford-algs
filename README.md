@@ -16,8 +16,8 @@ please do not share any solutions to the _actual_ assignments from the course.
 
 ## Getting Started
 
-If you want to know more about using this repository, check out the [wiki]
-(https://github.com/beaunus/stanford-algs/wiki).
+If you want to know more about using this repository, check out the 
+[wiki](https://github.com/beaunus/stanford-algs/wiki).
 
 ## Contributing
 
