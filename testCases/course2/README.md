@@ -26,17 +26,6 @@ In this programming problem you'll code up Dijkstra's shortest-path algorithm.
 
  IMPLEMENTATION NOTES: This graph is small enough that the straightforward _O(mn)_ time implementation of Dijkstra's algorithm should work fine. OPTIONAL: For those of you seeking an additional challenge, try implementing the heap-based version. Note this requires a heap that supports deletions, and you'll probably need to maintain some kind of mapping between vertices and their positions in the heap.
 
-## Programming Assignment #3
-
-### 1
-
-The goal of this problem is to implement the "Median Maintenance" algorithm (covered in the Week 3 lecture on heap applications). The text file contains a list of the integers from 1 to _n_ (_n ≤ 10000_) in unsorted order; you should treat this as a stream of numbers, arriving one by one. Letting _x<sub>i</sub>_ denote the _i<sup>th</sup>_ number of the file, the _k<sup>th</sup>_ median _m<sub>k</sub>_ is defined as the median of the numbers _x<sub>1</sub>_,…,_x<sub>k</sub>_. (So, if _k_ is odd, then _m<sub>k</sub>_ is _((k+1)/2)<sup>th</sup>_ smallest number among _x<sub>1</sub>_,…,_x<sub>k</sub>_; if _k_ is even, then _m<sub>k</sub>_ is the _(k/2)<sup>th</sup>_ smallest number among _x<sub>1</sub>_,…,_x<sub>k</sub>_.)
-
- The answer to this Programming Assignment is the sum of these _n_ medians, modulo 10000 (i.e., only the last 4 digits). That is, you should compute (_m<sub>1</sub>_+_m<sub>2</sub>_+_m<sub>3</sub>_+...+_m<sub>n</sub>_) _mod_ 10000.
-
- OPTIONAL EXERCISE: Compare the performance achieved by heap-based and search-tree-based implementations of the algorithm.
-
-
 ## Programming assignment #4
 
 ### 1
