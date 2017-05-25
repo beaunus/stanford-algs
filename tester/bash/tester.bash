@@ -51,6 +51,9 @@ filenames=$(echo "$@" | tr " " "\n" | $sort_command)
 
 for filename in $filenames
 do
-  echo "$filename"
-  ( $command $filename )
+  reversed_filename=$(echo "$filename" | rev)
+  output_filename=$(echo ${reversed_filename/tupni/tuptuo} | rev)
+  echo "input file => $filename"
+  echo "output file => $output_filename"
+  diff $output_filename <(eval $command $filename)
 done
