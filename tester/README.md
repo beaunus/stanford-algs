@@ -1,5 +1,7 @@
 # stanford-algs Testers
 
+Be sure to check out the [Using Test Cases Wiki](https://github.com/beaunus/stanford-algs/wiki/Using-Test-Cases) before proceeding.
+
 _Testers_ are used to automate testing your code's output with the expected output of the test cases.
 
 The _Tester_ will proceed as follows:
