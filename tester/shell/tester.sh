@@ -27,6 +27,7 @@ do
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
+      display_usage
       ;;
   esac
 done
@@ -35,6 +36,7 @@ done
 if [[ $command == "" ]]
 then
   echo "You must specify a command with the '-c' option." >&2
+  display_usage
   exit 1
 fi
 
