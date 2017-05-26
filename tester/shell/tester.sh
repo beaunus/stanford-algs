@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Run the specified test cases for the specified command.
 
