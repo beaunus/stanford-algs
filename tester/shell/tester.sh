@@ -3,7 +3,7 @@
 # Run the specified test cases for the specified command.
 
 function display_usage {
-  echo "usage: `basename $0` [somestuff]"
+  echo "usage: `basename $0` -c <command to run your program> <list of files to test>"
 }
 
 # Check to see if help is requested
