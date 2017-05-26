@@ -1,5 +1,7 @@
 # stanford-algs Python Tester
 
+Be sure to check out the [Using Test Cases Wiki](https://github.com/beaunus/stanford-algs/wiki/Using-Test-Cases) before proceeding.
+
 **NOTE**: The tester has been only tested with Linux. If you're having problems
 with other operating systems, please
 [open an issue](https://github.com/beaunus/stanford-algs/issues/new).

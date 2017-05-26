@@ -1,5 +1,7 @@
 # stanford-algs Java Tester
 
+Be sure to check out the [Using Test Cases Wiki](https://github.com/beaunus/stanford-algs/wiki/Using-Test-Cases) before proceeding.
+
 ## Prerequisites
 
 The Tester has a critical requirement for your solution code:
