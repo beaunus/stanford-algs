@@ -21,3 +21,22 @@ OPTIONAL: You can use whatever algorithm you like to solve this question. If you
 \[edge\_vertex\_tail\_2\] \[edge\_vertex\_head\_2\] \[weight\_2\]
 
 ...
+
+---
+
+### Path files
+
+For this assignment, there are files that define the vertices on the _shortest path_.  
+
+For example, if the path file reads:
+
+```
+[13, 26, 28, 29]
+```
+
+It means that the shortest path is:
+
+```
+vertex 13 -> vertex 26 -> vertex 28 -> vertex 29
+```
+
