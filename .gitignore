@@ -1,4 +1,10 @@
+# Gradle output
+build
+
+# Maven output
 target/
+
+# Eclipse files
 /.project
 /.pydevproject
 /.classpath
