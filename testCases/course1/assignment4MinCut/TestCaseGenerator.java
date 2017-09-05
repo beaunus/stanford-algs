@@ -93,9 +93,6 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Add the edges to each vertex.
         for (int i = 0; i < numVertices; i++) {
           int thisVertexNumEdges = ThreadLocalRandom.current().nextInt(numVertices / 2);
-          if (thisVertexNumEdges > 16) {
-            thisVertexNumEdges = (int) Math.sqrt(thisVertexNumEdges);
-          }
           thisVertexNumEdges += 2;
           int numEdges = 0;
           ArrayList<Integer> thisVertexEdges = adjacencyList.get(i);
@@ -104,9 +101,11 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             if (vertexToConnect == i) {
               continue;
             }
-            thisVertexEdges.add(vertexToConnect + 1);
-            numEdges++;
-            adjacencyList.get(vertexToConnect).add(i + 1);
+            if (!thisVertexEdges.contains(vertexToConnect + 1)) {
+              thisVertexEdges.add(vertexToConnect + 1);
+              numEdges++;
+              adjacencyList.get(vertexToConnect).add(i + 1);
+            }
           }
         }
 
