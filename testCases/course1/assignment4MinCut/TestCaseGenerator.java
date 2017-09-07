@@ -17,15 +17,18 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * An test case generator for course1 assignment4MinCut.
  *
- * <p>Using this class's main method should be parameter driven. The convention is as follows:
+ * <p>Using this class's main method should be parameter driven. The convention
+ * is as follows:
  *
- * <p>java testCases.course4.assignment1AllPairsShortestPath [method to call] [solver class] {[args
- * to method]}
+ * <p>java testCases.course4.assignment1AllPairsShortestPath [method to call]
+ * [solver class] {[args to method]}
  *
- * <p>The [solver class] is used to ensure that test cases with unique solutions are produced.
+ * <p>The [solver class] is used to ensure that test cases with unique solutions
+ * are produced.
  */
 public class TestCaseGenerator extends AbstractTestCaseGenerator {
-  public TestCaseGenerator(String methodToUse, String solverClassName, String[] args) {
+  public TestCaseGenerator(String methodToUse, String solverClassName,
+                           String[] args) {
     super(methodToUse, solverClassName, args);
   }
 
@@ -36,22 +39,24 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    */
   public static void main(String[] args) {
     AbstractTestCaseGenerator.main(TestCaseGenerator.class, args);
-    TestCaseGenerator tcg =
-        new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    TestCaseGenerator tcg = new TestCaseGenerator(
+        args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
     tcg.generateInputFiles();
   }
 
   /**
-   * Create test case files with adjacency lists that represent graphs with the following
-   * properties:
+   * Create test case files with adjacency lists that represent graphs with the
+   * following properties:
    *
    * <ul>
    *   <li>The graph has the specified number of vertices.
    *   <li>Each vertex has [2, n/2] number of edges.
    * </ul>
    *
-   * @param solverMainMethod the main method that gives a solution with the given file
-   * @param args the filenameStartingIndex, followed by an array of numbers of vertices
+   * @param solverMainMethod the main method that gives a solution with the
+   * given file
+   * @param args the filenameStartingIndex, followed by an array of numbers of
+   * vertices
    */
   public void random(Method solverMainMethod, String[] args) {
     int filenameStartingIndex = Integer.parseInt(args[0]);
@@ -92,21 +97,36 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
 
         // Add the edges to each vertex.
         for (int i = 0; i < numVertices; i++) {
-          int thisVertexNumEdges = ThreadLocalRandom.current().nextInt(numVertices / 2);
-          thisVertexNumEdges += 2;
+          // System.out.printf("i => %d\n", i);
+          int thisVertexNumEdges =
+              ThreadLocalRandom.current().nextInt(1, numVertices / 2);
+          // thisVertexNumEdges += 1;
           int numEdges = 0;
           ArrayList<Integer> thisVertexEdges = adjacencyList.get(i);
-          while (numEdges < thisVertexNumEdges) {
-            int vertexToConnect = ThreadLocalRandom.current().nextInt(numVertices);
+          while (thisVertexEdges.size() < numVertices - 1 &&
+                 numEdges < thisVertexNumEdges) {
+            int vertexToConnect =
+                ThreadLocalRandom.current().nextInt(numVertices);
             if (vertexToConnect == i) {
               continue;
             }
+            // System.out.printf("numEdges => %d\n", numEdges);
+            // System.out.printf("vertexToConnect => %d\n", vertexToConnect);
+            // System.out.printf("thisVertexEdges => %s\n", thisVertexEdges);
             if (!thisVertexEdges.contains(vertexToConnect + 1)) {
+              // System.out.printf("UNIQUE\n");
               thisVertexEdges.add(vertexToConnect + 1);
               numEdges++;
               adjacencyList.get(vertexToConnect).add(i + 1);
             }
           }
+        }
+
+        // Confirm that the newly created adjacency list doesn't have any
+        // parallel edges.
+        for (ArrayList<Integer> list : adjacencyList) {
+          HashSet<Integer> hashSet = new HashSet<Integer>(list);
+          assert(hashSet.size() == list.size());
         }
 
         // Translate the adjacency list into the lines array.
@@ -130,13 +150,15 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         String solution = ClassCaller.callMethod(solverMainMethod, filenames);
         System.out.println("This solution => " + solution);
 
-        // create an output file for this solution only if it is a unique solution.
+        // create an output file for this solution only if it is a unique
+        // solution.
         if (!solutions.contains(solution)) {
           // Add this solution to the set of solutions so far.
           solutions.add(solution);
 
           AbstractTestCaseGenerator.generateOutputFile(inputFilename, solution);
-          System.out.println("\t" + solutions.size() + " unique file(s) generated.");
+          System.out.println("\t" + solutions.size() +
+                             " unique file(s) generated.");
           filenameStartingIndex++;
         }
       }
