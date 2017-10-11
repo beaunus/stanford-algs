@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import utility.AbstractTestCaseGenerator;
 import utility.ClassCaller;
@@ -37,6 +38,17 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
     TestCaseGenerator tcg =
         new TestCaseGenerator(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
     tcg.generateInputFiles();
+  }
+
+  /** A class to represent an outgoing edge. */
+  private static class Edge {
+    public int otherVertex;
+    public int weight;
+
+    public Edge(final int otherVertex, final int weight) {
+      this.otherVertex = otherVertex;
+      this.weight = weight;
+    }
   }
 
   /**
@@ -75,19 +87,32 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         // Initialize the list of file lines
         ArrayList<String> lines = new ArrayList<String>();
 
-        int numEdges = ThreadLocalRandom.current().nextInt(problemSize + 1);
+        int numEdges = ThreadLocalRandom.current().nextInt(problemSize + 1) / 2;
         int maxEdgeWeight = (int) Math.ceil(Math.pow(problemSize, Math.E));
-        // Write edges for each vertex.
-        for (int i = 1; i <= 200; i++) {
-          StringBuilder sb = new StringBuilder();
-          sb.append(i);
-          for (int edgeIndex = 0; edgeIndex < numEdges; edgeIndex++) {
-            int thisEdgeOtherVertex = edgeIndex;
-            while (thisEdgeOtherVertex == edgeIndex) {
-              thisEdgeOtherVertex = ThreadLocalRandom.current().nextInt(1, 201);
+        // Create a set of vertices that share an edge with each vertex
+        ArrayList<Set<Edge>> sharedEdges = new ArrayList<Set<Edge>>();
+        for (int i = 0; i < 200; ++i) {
+          sharedEdges.add(new HashSet<Edge>());
+        }
+        // Compute edges for each vertex
+        for (int i = 0; i < 200; ++i) {
+          for (int edgeCount = 0; edgeCount < numEdges; ++edgeCount) {
+            int otherVertex = i;
+            while (otherVertex == i) {
+              otherVertex = ThreadLocalRandom.current().nextInt(0, 200);
             }
             int thisEdgeWeight = ThreadLocalRandom.current().nextInt(1, maxEdgeWeight + 1);
-            sb.append("\t").append(thisEdgeOtherVertex).append(",").append(thisEdgeWeight);
+            sharedEdges.get(i).add(new Edge(otherVertex, thisEdgeWeight));
+            sharedEdges.get(otherVertex).add(new Edge(i, thisEdgeWeight));
+          }
+        }
+
+        // Write edges to the file
+        for (int i = 0; i < 200; i++) {
+          StringBuilder sb = new StringBuilder();
+          sb.append(i + 1);
+          for (Edge edge : sharedEdges.get(i)) {
+            sb.append("\t").append(edge.otherVertex + 1).append(",").append(edge.weight);
           }
           lines.add(sb.toString());
         }
