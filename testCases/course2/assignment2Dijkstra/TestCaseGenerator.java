@@ -1,8 +1,5 @@
 package testCases.course2.assignment2Dijkstra;
 
-import utility.AbstractTestCaseGenerator;
-import utility.ClassCaller;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
@@ -13,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
 
 /**
  * An test case generator for course2 assignment2Dijkstra.
@@ -90,7 +89,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             int thisEdgeWeight = ThreadLocalRandom.current().nextInt(1, maxEdgeWeight + 1);
             sb.append("\t").append(thisEdgeOtherVertex).append(",").append(thisEdgeWeight);
           }
-          lines.add(sb.toString()); 
+          lines.add(sb.toString());
         }
 
         // Write the input file.
@@ -104,9 +103,9 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         String[] filenames = {inputFilename};
 
         String solution = ClassCaller.callMethod(solverMainMethod, filenames);
-        
+
         if (solution.contains("1000000")) {
-          continue; 
+          continue;
         }
 
         // create an output file for this solution only if it is a unique solution.
