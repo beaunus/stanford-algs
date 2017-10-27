@@ -2,6 +2,8 @@
 
 ## Assignment 1 - All Pairs Shortest Path
 
+_**EDIT**: The original assignment asks for computing the shortest all-pairs shortest path of 3 graphs. Meaning that you have to compute the all-pairs shortest path of each graph, and then submit the shortest. For the test cases it makes sense to compute the all-pairs shortest path of just one graph._
+
 In this assignment you will implement one or more algorithms for the all-pairs shortest-path problem. 
 
 The first line indicates the number of vertices and edges, respectively. Each subsequent line describes an edge (the first two numbers are its tail and head, respectively) and its length (the third number). NOTE: some of the edge lengths are negative. NOTE: These graphs may or may not have negative-cost cycles.
