@@ -2,9 +2,6 @@
 
 package testCases.course3.assignment1SchedulingAndMST.question3;
 
-import utility.AbstractTestCaseGenerator;
-import utility.ClassCaller;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.Charset;
@@ -15,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.concurrent.ThreadLocalRandom;
+import utility.AbstractTestCaseGenerator;
+import utility.ClassCaller;
 
 /**
  * An test case generator for course3 assignment1 question3.
@@ -77,7 +76,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
         for (int i = 1; i < numNodes; i++) {
           int weight = ThreadLocalRandom.current().nextInt(-9999, 10000);
           lines.add(i + " " + (i + 1) + " " + weight);
-          numEdges++; 
+          numEdges++;
         }
 
         // Add random edges (1/3) of the time.
@@ -87,9 +86,9 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             int weight = ThreadLocalRandom.current().nextInt(-9999, 10000);
             lines.add(i + " " + otherVertex + " " + weight);
           }
-          numEdges++; 
+          numEdges++;
         }
-        
+
         // prepend the array of lines with the calculated number of edges
         lines.add(0, numNodes + " " + numEdges);
 
