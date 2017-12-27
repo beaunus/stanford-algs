@@ -51,6 +51,7 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
    * @param args the filenameStartingIndex, followed by an array of numbers of nodes
    */
   public void random(Method solverMainMethod, String[] args) {
+
     int filenameStartingIndex = Integer.parseInt(args[0]);
 
     // Iterate through the command line arguments
@@ -85,9 +86,10 @@ public class TestCaseGenerator extends AbstractTestCaseGenerator {
             int otherVertex = ThreadLocalRandom.current().nextInt(numNodes) + 1;
             int weight = ThreadLocalRandom.current().nextInt(-9999, 10000);
             lines.add(i + " " + otherVertex + " " + weight);
+            numEdges++;
           }
-          numEdges++;
         }
+
 
         // prepend the array of lines with the calculated number of edges
         lines.add(0, numNodes + " " + numEdges);
