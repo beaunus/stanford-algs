@@ -25,10 +25,17 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 	for filename in os.listdir(test_cases_folder):
 		if filename[:5] != 'input':
 			continue
+
 		# get all input files
-		file_type, file_user, file_num, file_size = filename[:-4].split('_')
-		file_size = int(file_size)
-		fileref = [file_user, file_num, file_size]
+		file_info = filename[:-4].split('_')
+		# First three parts are type, user, and number
+		file_type, file_user, file_num = file_info[:3]
+		# Rest parts are input sizes
+		file_size = 1
+		for size in file_info[3:]:
+			file_size *= int(size)
+
+		fileref = file_info[1:]
 		fileref_str = '_'.join([str(x) for x in fileref])
 
 		# filter 'only' files
@@ -50,17 +57,17 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 				output.append(line.strip())
 
 		# construct an array with the relation between file and test case solution
-		test_cases.append([fileref, output])
+		test_cases.append([file_size, fileref, output])
 
 	# sort by size to run first the samller tests
-	test_cases.sort(key=lambda x: x[0][2])
+	test_cases.sort(key=lambda x: x[0])
 
 	# run the tests
 	print()
 	tests_passed = 0
 	tests_total = 0
 	failed_tests = []
-	for fileref, expected_output in test_cases:
+	for file_size, fileref, expected_output in test_cases:
 		fileref_str = '_'.join(str(x) for x in fileref)
 		filename = test_cases_folder + '/input_' + fileref_str + '.txt'
 
