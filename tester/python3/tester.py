@@ -88,11 +88,11 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 			if expected_output[i] == alg_output[i]:
 				answers_ok.append(True)
 				print(u'\N{heavy check mark}', end='')
-				print(f'  (took {alg_running_time}s)', end='')
+				print(f'  (took {alg_running_time} s)', end='')
 			else:
 				answers_ok.append(False)
 				print(u'\N{heavy ballot x}', end='')
-				print(f'  (took {alg_running_time}s)', end='')
+				print(f'  (took {alg_running_time} s)', end='')
 				errors_buffer += ('\n    Answer ' + str(i+1) + ':\n\tExpected: ' + expected_output[i] +
 					'\n\tResult: ' + alg_output[i])
 				failed_tests.append(fileref_str)
