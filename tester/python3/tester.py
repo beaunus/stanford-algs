@@ -1,6 +1,7 @@
 import sys
 import os
 import importlib
+import time
 
 def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[]):
 	# import the algorithm
@@ -71,7 +72,11 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 		fileref_str = '_'.join(str(x) for x in fileref)
 		filename = test_cases_folder + '/input_' + fileref_str + '.txt'
 
+		start_time = time.time()
 		alg_output_unprocessed = alg(filename)
+		finish_time = time.time()
+		alg_running_time = finish_time - start_time
+
 		if not isinstance(alg_output_unprocessed, list):
 			alg_output_unprocessed = [alg_output_unprocessed]
 
@@ -90,9 +95,11 @@ def test(student_algorithm, test_cases_folder, name='alg', max_size=-1, only=[])
 			if expected_output[i] == alg_output[i]:
 				answers_ok.append(True)
 				print(u'\N{heavy check mark}', end='')
+				print(f'  (took {alg_running_time} s)', end='')
 			else:
 				answers_ok.append(False)
 				print(u'\N{heavy ballot x}', end='')
+				print(f'  (took {alg_running_time} s)', end='')
 				errors_buffer += ('\n    Answer ' + str(i+1) + ':\n\tExpected: ' + expected_output[i] +
 					'\n\tResult: ' + alg_output[i])
 				failed_tests.append(fileref_str)
